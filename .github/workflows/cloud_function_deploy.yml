@@ -27,7 +27,7 @@ jobs:
             --runtime python310 \
             --entry-point main \
             --source cloud_function \
-            --trigger-http
+            --trigger-http \
             --allow-unauthenticated
 
       - name: Test Deployment
