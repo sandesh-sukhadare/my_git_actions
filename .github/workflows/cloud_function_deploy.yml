@@ -1,4 +1,4 @@
-name: Update-My-Function
+name: Super-Linter
 
 on:
   push:
@@ -11,26 +11,25 @@ jobs:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
-      - uses: 'actions/checkout@v3'
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.3
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-#        with:
-#          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-#          service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
 
-      - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v0.1.2'
-        with:
-          name: 'rask'
-          runtime: 'python310'
-          entry_point : 'main'
-          source_dir : "cloud_function"
-          service_account_email : "randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com"
-          timeout : '30'
+      - name: Deploy Cloud Function
+        run: |
+          gcloud functions deploy my-function \
+            --runtime python310 \
+            --entry-point main \
+            --source cloud_function \
+            --trigger-http
+            --allow-unauthenticated
 
-      - id: 'test'
-        run: 'curl "${{ steps.deploy.outputs.url }}"'
-
-
+      - name: Test Deployment
+        run: |
+          FUNCTION_URL=$(gcloud functions describe my-function --format 'value(httpsTrigger.url)')
+          curl $FUNCTION_URL
