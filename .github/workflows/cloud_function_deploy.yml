@@ -20,9 +20,10 @@ jobs:
 #          service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
 
       - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v1'
+        uses: 'google-github-actions/deploy-cloud-functions@v2'
         with:
-          name: 'my-function'
+          name: 'my-function_2ndg
+          esandeshsukadhare'
           runtime: 'python310'
           entry_point : 'main'
           source_dir : "cloud_function"
