@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'cloud_function/**'
+      - '.github/workflows/**'
 
 jobs:
   super-lint:
@@ -22,11 +23,12 @@ jobs:
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v2'
         with:
-          name: 'my-function_2ndg
-          esandeshsukadhare'
+          name: 'rask'
           runtime: 'python310'
           entry_point : 'main'
           source_dir : "cloud_function"
+          service_account_email : "randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com"
+          timeout : '30'
 
       - id: 'test'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
