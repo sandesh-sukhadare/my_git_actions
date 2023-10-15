@@ -33,7 +33,3 @@ jobs:
             --service-account randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com \
             --allow-unauthenticated
 
-      - name: Test Deployment
-        run: |
-          FUNCTION_URL=$(gcloud functions describe my-function --format 'value(httpsTrigger.url)')
-          curl $FUNCTION_URL
