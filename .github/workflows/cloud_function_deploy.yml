@@ -1,6 +1,9 @@
 name: Super-Linter
 
-on: push
+on:
+  push:
+    paths:
+      - 'cloud_function'
 
 jobs:
   super-lint:
@@ -26,14 +29,5 @@ jobs:
 
       - id: 'test'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
-
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#
-#      - name: Run Super-Linter
-#        uses: github/super-linter@v4
-#        env:
-#          DEFAULT_BRANCH: main
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
