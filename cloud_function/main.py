@@ -7,7 +7,8 @@ import json
 from google.cloud import secretmanager
 import google.cloud.logging
 import logging
-#new comment to trigger workflow
+# new comment to trigger workflow
+# another one
 logging_client = google.cloud.logging.Client()
 logging_client.setup_logging()
 
