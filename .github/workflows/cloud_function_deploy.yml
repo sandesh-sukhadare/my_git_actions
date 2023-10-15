@@ -30,6 +30,7 @@ jobs:
             --entry-point main \
             --source cloud_function \
             --trigger-http \
+            --service-account randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com \
             --allow-unauthenticated
 
       - name: Test Deployment
