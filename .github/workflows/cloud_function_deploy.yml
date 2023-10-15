@@ -7,11 +7,33 @@ jobs:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Super-Linter
-        uses: github/super-linter@v4
+      - uses: 'actions/checkout@v3'
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+#        with:
+#          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+#          service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloud-functions@v1'
+        with:
+          name: 'my-function'
+          runtime: 'python310'
+          entry_point : 'main'
+          source_dir : "cloud_function"
+
+      - id: 'test'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
+
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Run Super-Linter
+#        uses: github/super-linter@v4
+#        env:
+#          DEFAULT_BRANCH: main
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+

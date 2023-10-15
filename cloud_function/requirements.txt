@@ -1,0 +1,5 @@
+functions-framework==3.*
+google-auth
+google-api-python-client
+google-cloud-secret-manager
+google-cloud-logging
