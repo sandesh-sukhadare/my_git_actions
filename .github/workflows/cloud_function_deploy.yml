@@ -24,6 +24,7 @@ jobs:
       - name: Deploy Cloud Function
         run: |
           gcloud functions deploy my-function \
+            --gen2 \
             --runtime python310 \
             --entry-point main \
             --source cloud_function \
