@@ -26,6 +26,7 @@ jobs:
           gcloud functions deploy my-function \
             --gen2 \
             --runtime python310 \
+            --region=us-central1 \
             --entry-point main \
             --source cloud_function \
             --trigger-http \
