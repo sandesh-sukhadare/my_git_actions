@@ -3,7 +3,7 @@ name: Update-My-Function
 on:
   push:
     paths:
-      - 'cloud_function'
+      - 'cloud_function/**'
 
 jobs:
   super-lint:
