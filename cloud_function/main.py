@@ -16,7 +16,6 @@ service_account_email = os.environ.get("service_account_email")
 service_account_name = os.environ.get("service_account_name")
 service = build('iam', 'v1')
 client = secretmanager.SecretManagerServiceClient()
-#secret_id = "randstad-secret"
 secret_id = os.environ.get("secret_id")
 
 
