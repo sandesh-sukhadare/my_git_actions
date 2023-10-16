@@ -1,14 +1,14 @@
-name: Super-Linter
+name: rotate_service_account_key
 
 on:
   push:
     paths:
-      - 'cloud_function/**'
-      - '.github/workflows/**'
+      - 'rotate_service_account_key/cloud_function/**'
+      - '.github/workflows/rotate_service_account_key/**'
 
 jobs:
   super-lint:
-    name: Lint code base
+    name: Deploy rotate_service_account_key
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,12 +23,12 @@ jobs:
 
       - name: Deploy Cloud Function
         run: |
-          gcloud functions deploy my-function \
+          gcloud functions deploy rotate_service_account_key \
             --gen2 \
             --runtime python310 \
             --region=us-central1 \
             --entry-point main \
-            --source cloud_function \
+            --source rotate_service_account_key/cloud_function \
             --trigger-http \
             --service-account randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com \
             --set-env-vars SA_EMAIL=randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com,SA_NAME=randstad-key-test,secret_id=randstad-secret \
