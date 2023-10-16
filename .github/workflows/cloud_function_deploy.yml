@@ -31,6 +31,6 @@ jobs:
             --source cloud_function \
             --trigger-http \
             --service-account randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com \
-            --set-env-vars secret_id=randstad-secret, service_account_email=randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com, service_account_name=Randstad_key_test \
+            --set-env-vars secret_id=randstad-secret, SA_EMAIL=randstad-key-test@randstad-etl-poc.iam.gserviceaccount.com, SA_NAME=Randstad_key_test \
             --allow-unauthenticated
 
