@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'rotate_service_account_key/cloud_function/**'
-      - '.github/workflows/rotate_service_account_key/**'
+      - '.github/workflows/**'
 
 jobs:
   super-lint:
