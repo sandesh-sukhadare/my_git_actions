@@ -1,10 +1,10 @@
 name: rotate_service_account_key_cloud_function_new
 
-on: push
-#  push:
-#    paths:
-#      - 'rotate_service_account_key/cloud_function/**'
-#      - '.github/workflows/**'
+on:
+  push:
+    paths:
+      - 'rotate_service_account_key/cloud_function/**'
+      - '.github/workflows/**'
 
 jobs:
   super-lint:
