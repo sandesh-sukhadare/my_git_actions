@@ -7,7 +7,7 @@ import json
 from google.cloud import secretmanager
 import google.cloud.logging
 import logging
-
+# new comment
 logging_client = google.cloud.logging.Client()
 logging_client.setup_logging()
 
