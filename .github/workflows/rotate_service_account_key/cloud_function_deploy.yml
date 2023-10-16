@@ -1,4 +1,4 @@
-name: rotate_service_account_key
+name: rotate_service_account_key_cloud_function
 
 on:
   push:
