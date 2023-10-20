@@ -6,9 +6,7 @@ on:
       argument1:
         description: "argument1"
         default: 'some value'
-      argument2:
-        description: "argument2"
-        default: 'some value'
+
 
 jobs:
   read-json:
