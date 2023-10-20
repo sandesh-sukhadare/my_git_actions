@@ -19,7 +19,7 @@ jobs:
       - name: Read JSON and Create Dictionary
         run: |
           # Read the JSON file into a variable
-          json_content=$(cat path/to/your/file.json)
+          json_content=$(cat rotate_service_account_key/config/cf_config.json)
           
           # Parse the JSON content into a dictionary
           dictionary=$(echo "$json_content" | jq -c -r 'to_entries | map({(.key): .value}) | add')
