@@ -31,5 +31,5 @@ jobs:
       - name: Use the Dictionary
         run: |
           # You can use the $dictionary variable here, e.g., print a specific value
-          echo "Value of 'keyName' is: ${dictionary["keyName"]}"
+          echo "Value of 'keyName' is: ${dictionary["US_DEV"]}"
         shell: bash
