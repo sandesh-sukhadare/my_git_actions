@@ -1,13 +1,4 @@
 {
-  "US_DEV": {
-    "cloud_function_name": "rotate_service_account_key",
-    "trigger_type" : "http",
-    "region": "us-central1",
-    "source": "rotate_service_account_key/cloud_function",
-    "env_variables": {"KEY":  "US", "VALUE":  "VAR_VALS"},
-    "env_variables_EU": "values"
-  },
-  "US_ACC": {
     "cloud_function_name": "rotate_service_account_key",
     "trigger_type" : "http",
     "region": "us-central1",
@@ -15,5 +6,3 @@
     "env_variables": {"KEY":  "US", "VALUE":  "VAR_VALS"},
     "env_variables_EU": "values"
   }
-
-}
