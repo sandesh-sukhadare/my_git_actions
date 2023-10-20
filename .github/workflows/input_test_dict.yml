@@ -18,17 +18,15 @@ jobs:
 
       - name: Read JSON and Create Dictionary
         run: |
-          # Read the JSON file
-          json_content=$(cat rotate_service_account_key/config/cf_config.json)
+          # Read the JSON file into a variable
+          jsonData=$(cat rotate_service_account_key/config/cf_config.json)
           
-          # Convert the JSON to a dictionary
-          dictionary=$(echo $json_content | jq -c 'to_entries | map({key: .key, value: .value}) | from_entries')
+          # Parse the JSON into a dictionary
+          dictionary=$(echo $jsonData | jq -c '.')
           
-          # Set the dictionary as an environment variable
-          echo "MY_DICTIONARY=$dictionary" >> $GITHUB_ENV
+          echo "Dictionary: $dictionary"
 
-      - name: Use the Dictionary
-        run: |
-          # Access the dictionary variable
-          val =  "${MY_DICTIONARY['source']}"
-          echo $val
+        # This step sets the dictionary as an output for later use
+        id: dictionary
+        env:
+          DICTIONARY: $dictionary
