@@ -20,14 +20,12 @@ jobs:
 
       - name: Read JSON and Set Variables
         run: |
-          JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
-          echo $JSON_CONTENT
+          JSON_CONTENT=$(cat path/to/data.json)
           for key in $(echo "$JSON_CONTENT" | jq -r 'keys[]'); do
             value=$(echo "$JSON_CONTENT" | jq -r ".$key")
             echo "Setting $key=$value as an environment variable"
-#            echo "::$key::$value" >> $GITHUB_ENV
           done
-#
+
       - name: Use Environment Variables
         run: |
           echo "Value of name is $name"
