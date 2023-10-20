@@ -18,7 +18,7 @@ jobs:
       - name: Read JSON and Create Dictionary
         run: |
           # Read the JSON file into a variable
-          JSON_CONTENT=$(cat rotate_service_account_key/cloud_function)
+          JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
           
           # Parse the JSON into a dictionary (associative array in Bash)
           declare -A DATA_DICT
