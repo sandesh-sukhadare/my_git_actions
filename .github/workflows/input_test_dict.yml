@@ -13,23 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Read JSON and Create Dictionary
         run: |
-          JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
+          # Read the JSON file
+          json_content=$(cat rotate_service_account_key/config/cf_config.json)
           
-          declare -A DATA_DICT
-          while IFS="=" read -r key value; do
-            DATA_DICT["$key"]=$value
-          done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" <<< "$JSON_CONTENT")
+          # Convert the JSON to a dictionary
+          dictionary=$(echo $json_content | jq -r 'to_entries | map([.key, .value]) | from_entries')
           
-          echo "Dictionary: ${DATA_DICT}"
+          # Set the dictionary as an environment variable
+          echo "MY_DICTIONARY=$dictionary" >> $GITHUB_ENV
 
-        env:
-          DATA_DICT: ${{ steps.create-dictionary.outputs.DICTIONARY }}
-
-      - name: Access Dictionary Values
+      - name: Use the Dictionary
         run: |
-          echo ${DATA_DICT["cloud_function_name"]}
+          # Access the dictionary variable
+          echo "$MY_DICTIONARY"
