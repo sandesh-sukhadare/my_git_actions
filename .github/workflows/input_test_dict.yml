@@ -37,4 +37,5 @@ jobs:
 
       - name: Access Dictionary Values
         run: |
-          echo ${DATA_DICT["cloud_function_name"]}
+          key_value=$(echo "$dictionary" | jq -r '.key_name')
+          echo "Value for key_name: $env_variables_EU"
