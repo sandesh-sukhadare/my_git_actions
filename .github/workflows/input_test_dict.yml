@@ -38,5 +38,4 @@ jobs:
       - name: Access Dictionary Values
         run: |
           # Access specific values from the dictionary
-          echo "Value for key 'cloud_function_name': ${DATA_DICT[cloud_function_name]}"
-          echo "Value for key 'source': ${DATA_DICT[source]}"
+          echo $DATA_DICT
