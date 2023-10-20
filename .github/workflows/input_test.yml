@@ -29,4 +29,4 @@ jobs:
 
       - name: Use Environment Variables
         run: |
-          echo env_variables
+          echo $US-DEV
