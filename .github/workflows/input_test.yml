@@ -1,4 +1,4 @@
-name: Read JSON and Set Variables
+name: Read JSON and Set Variables1
 
 on:
   workflow_dispatch:
