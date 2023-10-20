@@ -19,24 +19,17 @@ jobs:
       - name: Read JSON and Create Dictionary
         run: |
           # Read the JSON file into a variable
-          JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
+          json_content=$(cat path/to/your/file.json)
           
-          # Parse the JSON into a dictionary (associative array in Bash)
-          declare -A DATA_DICT
-          while IFS="=" read -r key value; do
-            DATA_DICT["$key"]=$value
-          done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" <<< "$JSON_CONTENT")
+          # Parse the JSON content into a dictionary
+          dictionary=$(echo "$json_content" | jq -c -r 'to_entries | map({(.key): .value}) | add')
           
-          # Output the dictionary for reference
-          echo "Dictionary: ${DATA_DICT[@]}"
-          
-          # You can now use the DATA_DICT variable in subsequent steps or jobs.
+          # Print the resulting dictionary
+          echo "$dictionary"
+        shell: bash
 
-        env:
-          DATA_DICT: ${{ steps.create-dictionary.outputs.DICTIONARY }}
-
-      - name: Access Dictionary Values
+      - name: Use the Dictionary
         run: |
-          # Access specific values from the dictionary
-          echo "Value for key 'key1': ${DATA_DICT[@]}"
-          echo "Value for key 'key2': ${DATA_DICT[key2]}"
+          # You can use the $dictionary variable here, e.g., print a specific value
+          echo "Value of 'keyName' is: ${dictionary["keyName"]}"
+        shell: bash
