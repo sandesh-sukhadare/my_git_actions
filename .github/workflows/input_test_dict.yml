@@ -22,7 +22,7 @@ jobs:
           json_content=$(cat rotate_service_account_key/config/cf_config.json)
           
           # Convert the JSON to a dictionary
-          dictionary=$(echo $json_content | jq -r 'to_entries | map([.key, .value]) | from_entries')
+          dictionary=$(echo $json_content | jq -c 'to_entries | map({key: .key, value: .value}) | from_entries')
           
           # Set the dictionary as an environment variable
           echo "MY_DICTIONARY=$dictionary" >> $GITHUB_ENV
