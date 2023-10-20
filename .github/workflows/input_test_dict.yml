@@ -32,9 +32,6 @@ jobs:
           
           # You can now use the DATA_DICT variable in subsequent steps or jobs.
 
-        env:
-          DATA_DICT_1: ${{ steps.create-dictionary.outputs.DICTIONARY }}
-
       - name: Access Dictionary Values
         run: |
-          echo ${{env.DATA_DICT_1}}
+          echo ${DATA_DICT}
