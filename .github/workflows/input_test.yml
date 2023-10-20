@@ -29,5 +29,4 @@ jobs:
 
       - name: Use Environment Variables
         run: |
-          echo $name
-          echo $age
+          echo env_variables
