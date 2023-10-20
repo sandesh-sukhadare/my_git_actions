@@ -30,4 +30,4 @@ jobs:
       - name: Use the Dictionary
         run: |
           # Access the dictionary variable
-          echo "${MY_DICTIONARY["source"]}"
+          echo "${MY_DICTIONARY['source']}"
