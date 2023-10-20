@@ -24,7 +24,7 @@ jobs:
           for key in $(echo "$JSON_CONTENT" | jq -r 'keys[]'); do
             value=$(echo "$JSON_CONTENT" | jq -r ".$key")
             echo "Setting $key=$value as an environment variable"
-            echo "::$key::$value" >> $GITHUB_ENV
+              echo "::set-env name=key::value"
           done
 
       - name: Use Environment Variables
