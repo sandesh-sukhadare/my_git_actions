@@ -20,14 +20,14 @@ jobs:
 
       - name: Read JSON and Set Variables
         run: |
-          JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
-          for key in $(echo "$JSON_CONTENT" | jq -r 'keys[]'); do
-            value=$(echo "$JSON_CONTENT" | jq -r ".$key")
-            echo "Setting $key=$value as an environment variable"
-              echo "::set-output name=key::value"
-          done
+          # Read the JSON file and parse it
+          JSON_DATA=$(cat rotate_service_account_key/config/cf_config.json)
+          # You can use jq or any other JSON parsing tool here
+          # In this example, we'll use jq to extract keys from the JSON file and set them as environment variables
+          KEYS=$(echo "$JSON_DATA" | jq -r 'keys[] as $key | "export $key=\(.[$key])"')
+          eval "$KEYS"
 
       - name: Use Environment Variables
         run: |
-          echo "Value of name is $name"
-          echo "Value of age is $age"
+          echo $name
+          echo $age
