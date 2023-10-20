@@ -28,7 +28,7 @@ jobs:
           done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" <<< "$JSON_CONTENT")
           
           # Output the dictionary for reference
-          echo "Dictionary: ${DATA_DICT[@][1]}"
+          echo "Dictionary: ${DATA_DICT[@]}"
           
           # You can now use the DATA_DICT variable in subsequent steps or jobs.
 
@@ -38,5 +38,5 @@ jobs:
       - name: Access Dictionary Values
         run: |
           # Access specific values from the dictionary
-          echo "Value for key 'key1': ${DATA_DICT}"
+          echo "Value for key 'key1': ${DATA_DICT[@]}"
           echo "Value for key 'key2': ${DATA_DICT[key2]}"
