@@ -28,7 +28,7 @@ jobs:
           done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" <<< "$JSON_CONTENT")
           
           # Output the dictionary for reference
-          echo "Dictionary: ${DATA_DICT[@]}"
+          echo "Dictionary: ${DATA_DICT[@][1]}"
           
           # You can now use the DATA_DICT variable in subsequent steps or jobs.
 
