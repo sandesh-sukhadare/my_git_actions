@@ -18,14 +18,19 @@ jobs:
 
       - name: Read JSON and Create Dictionary
         run: |
+          # Read the JSON file into a variable
           JSON_CONTENT=$(cat rotate_service_account_key/config/cf_config.json)
           
+          # Parse the JSON into a dictionary (associative array in Bash)
           declare -A DATA_DICT
           while IFS="=" read -r key value; do
             DATA_DICT["$key"]=$value
           done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" <<< "$JSON_CONTENT")
           
-          echo "Dictionary: ${DATA_DICT}"
+          # Output the dictionary for reference
+          echo "Dictionary: ${DATA_DICT[@]}"
+          
+          # You can now use the DATA_DICT variable in subsequent steps or jobs.
 
         env:
           DATA_DICT: ${{ steps.create-dictionary.outputs.DICTIONARY }}
