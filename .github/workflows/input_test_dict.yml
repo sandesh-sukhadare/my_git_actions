@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Read JSON and Create Dictionary
         run: |
           # Read the JSON file into a variable
