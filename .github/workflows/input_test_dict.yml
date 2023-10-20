@@ -37,5 +37,4 @@ jobs:
 
       - name: Access Dictionary Values
         run: |
-          # Access specific values from the dictionary
           echo $DATA_DICT
