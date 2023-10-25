@@ -1,5 +1,6 @@
 {
   "US_DEV": {
+    "action_name" : "Rotate Service Account Key",
     "cloud_function_name": "rotate_service_account_key_dev",
     "trigger_type" : "http",
     "region": "us-central1",
